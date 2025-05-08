@@ -5,16 +5,16 @@ from httpx import Response
 from clients.api_client import APIClient
 
 
-class CreateUserRequest(TypedDict):
+class CreateUserRequestDict(TypedDict):
     """
     Описание структуры запроса для создания пользователя.
     """
 
     email: str
     password: str
-    last_name: str
-    first_name: str
-    middle_name: str
+    lastName: str
+    firstName: str
+    middleName: str
 
 
 class PublicUsersClient(APIClient):
@@ -24,7 +24,7 @@ class PublicUsersClient(APIClient):
     Наследуется от базового APIClient.
     """
 
-    def create_user_api(self, request: CreateUserRequest) -> Response:
+    def create_user_api(self, request: CreateUserRequestDict) -> Response:
         """
         Создает нового пользователя через API.
 
