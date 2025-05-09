@@ -13,7 +13,7 @@ class Exercise(TypedDict):
 
     id: str
     title: str
-    course_id: str
+    courseId: str
     maxScore: int
     minScore: int
     orderIndex: int
