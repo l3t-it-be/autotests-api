@@ -1,17 +1,10 @@
-from pydantic import BaseModel, EmailStr, ConfigDict, Field
+from pydantic import BaseModel, EmailStr, ConfigDict
 from pydantic.alias_generators import to_camel
 
 
 class UserSchema(BaseModel):
     """
-    Модель данных пользователя.
-
-    Атрибуты:
-    id: Уникальный идентификатор пользователя
-    email: Электронная почта пользователя
-    last_name: Фамилия пользователя
-    first_name: Имя пользователя
-    middle_name: Второе имя пользователя
+    Описание структуры пользователя.
     """
 
     model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
@@ -25,14 +18,7 @@ class UserSchema(BaseModel):
 
 class CreateUserRequestSchema(BaseModel):
     """
-    Запрос на создание пользователя.
-
-    Атрибуты:
-    email: Электронная почта пользователя
-    password: Пароль пользователя
-    last_name: Фамилия пользователя
-    first_name: Имя пользователя
-    middle_name: Второе имя пользователя
+    Описание структуры запроса на создание пользователя.
     """
 
     model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
@@ -46,15 +32,7 @@ class CreateUserRequestSchema(BaseModel):
 
 class CreateUserResponseSchema(BaseModel):
     """
-    Ответ с данными созданного пользователя.
-
-    Атрибуты:
-    user: JSON c данными созданного пользователя:
-        id: Уникальный идентификатор пользователя
-        email: Электронная почта пользователя
-        last_name: Фамилия пользователя
-        first_name: Имя пользователя
-        middle_name: Второе имя пользователя
+    Описание структуры ответа создания пользователя.
     """
 
     model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
