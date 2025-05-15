@@ -72,3 +72,11 @@ class UpdateExerciseRequestSchema(BaseModel):
     order_index: int | None
     description: str | None
     estimated_time: str | None
+
+
+class UpdateExerciseResponseSchema(BaseModel):
+    """
+    Описание структуры ответа на обновление упражнения.
+    """
+
+    exercise: ExerciseSchema

@@ -7,6 +7,8 @@ from clients.exercises.exercises_schema import (
     UpdateExerciseRequestSchema,
     GetExercisesResponseSchema,
     ExerciseSchema,
+    CreateExerciseResponseSchema,
+    UpdateExerciseResponseSchema,
 )
 from clients.private_http_builder import (
     AuthenticationUserSchema,
@@ -83,18 +85,17 @@ class ExercisesClient(APIClient):
         response = self.get_exercise_api(exercise_id).text
         return ExerciseSchema.model_validate_json(response)
 
-    def create_exercise(self, request: CreateExerciseRequestSchema) -> ExerciseSchema:
-        response = self.create_exercise_api(request).json()
-        exercise_data = response.get('exercise')
-        if not exercise_data:
-            raise ValueError('Response does not contain "exercise" key')
-        return ExerciseSchema.model_validate(exercise_data)
+    def create_exercise(
+        self, request: CreateExerciseRequestSchema
+    ) -> CreateExerciseResponseSchema:
+        response = self.create_exercise_api(request).text
+        return CreateExerciseResponseSchema.model_validate_json(response)
 
     def update_exercise(
         self, exercise_id: str, request: UpdateExerciseRequestSchema
-    ) -> ExerciseSchema:
+    ) -> UpdateExerciseResponseSchema:
         response = self.update_exercise_api(exercise_id, request).text
-        return ExerciseSchema.model_validate_json(response)
+        return UpdateExerciseResponseSchema.model_validate_json(response)
 
 
 def get_exercises_client(user: AuthenticationUserSchema) -> ExercisesClient:
