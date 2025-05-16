@@ -3,11 +3,11 @@ import httpx
 from tools.fakers import fake
 
 create_user_payload = {
-    'email': get_random_email(),
-    'password': 'string',
-    'lastName': 'string',
-    'firstName': 'string',
-    'middleName': 'string',
+    'email': fake.email(),
+    'password': fake.password(),
+    'lastName': fake.last_name(),
+    'firstName': fake.first_name(),
+    'middleName': fake.middle_name(),
 }
 create_user_response = httpx.post(
     'http://localhost:8000/api/v1/users', json=create_user_payload
@@ -30,7 +30,7 @@ update_user_headers = {
 }
 
 update_user_payload = {
-    'email': get_random_email(),
+    'email': fake.email(),
     'password': create_user_payload['password'],
     'lastName': create_user_payload['lastName'],
     'firstName': create_user_payload['firstName'],

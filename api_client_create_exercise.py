@@ -35,7 +35,9 @@ print('Create course data:', create_course_response.model_dump(by_alias=True))
 
 exercises_client = get_exercises_client(authentication_user)
 
-create_exercise_request = CreateExerciseRequestSchema()
+create_exercise_request = CreateExerciseRequestSchema(
+    course_id=create_course_response.course.id
+)
 create_exercise_response = exercises_client.create_exercise(create_exercise_request)
 print('Create exercise data:', create_exercise_response)
 print('Create exercise data:', create_exercise_response.model_dump(by_alias=True))
