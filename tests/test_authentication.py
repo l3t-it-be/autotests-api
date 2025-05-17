@@ -14,11 +14,10 @@ from tools.assertions.schema import validate_json_schema
 
 def test_login():
     public_users_client = get_public_users_client()
+    authentication_client = get_authentication_client()
 
     create_user_request = CreateUserRequestSchema()
     public_users_client.create_user(create_user_request)
-
-    authentication_client = get_authentication_client()
 
     login_request = LoginRequestSchema(
         email=create_user_request.email, password=create_user_request.password
